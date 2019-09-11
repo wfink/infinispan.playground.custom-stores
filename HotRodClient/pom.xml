@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.infinispan.wfink.playground</groupId>
+        <artifactId>CACHELOADER</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+
+    <artifactId>CacheLoader-Client</artifactId>
+
+    <name>Custom Cache Stores: HotRod client application with protobuf</name>
+
+    <url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-remote</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.infinispan.wfink.playground</groupId>
+        	<artifactId>CacheLoader-Domain</artifactId>
+        	<version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+<!--
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${version.exec.plugin}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <mainClass>org.infinispan.wfink.playground.cacheloader.client.hotrod.PersonQueryHotRodClient</mainClass>
+                    <systemProperties>
+                        <systemProperty>
+                            <key>java.net.preferIPv4Stack</key>
+                            <value>true</value>
+                        </systemProperty>
+                    </systemProperties>
+               </configuration>
+            </plugin>
+-->
+        </plugins>
+    </build>
+</project>

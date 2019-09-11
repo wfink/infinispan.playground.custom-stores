@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>CACHELOADER</artifactId>
+    <groupId>org.infinispan.wfink.playground</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>CacheLoader</artifactId>
+  <name>Custom Cache Stores: simple CacheLoader implementation</name>
+
+  <dependencies>
+  	<dependency>
+  		<groupId>org.infinispan.wfink.playground</groupId>
+  		<artifactId>CacheLoader-Domain</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  </dependencies>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <!-- This plugin will pull all the non provided scoped dependencies into a resulting jar, allowing for
+           all the classes to be available to the deployment -->
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <appendAssemblyId>false</appendAssemblyId>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifestEntries>
+              <Dependencies>org.infinispan.core:jdg-7.3 services, org.infinispan.protostream:jdg-7.3 services</Dependencies>
+            </manifestEntries>
+          </archive>
+        </configuration>
+     </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,20 @@
+if [ -z "$1" -o ! -d "$1" ]; then
+  echo "no path to remote libraries given"
+  exit 1
+fi
+
+CLIENTLIB=""
+if [ -n "`ls $1/*datagrid*-?\.?\.?-remote-java-client 2>/dev/null`" ]; then
+  for jar in `find $1/*datagrid*-?\.?\.?-remote-java-client -name "*.jar"`
+  do
+    CLIENTLIB="$CLIENTLIB:$jar"
+  done
+else
+  for jar in `find $1 -name "*.jar"`
+  do
+    CLIENTLIB="$CLIENTLIB:$jar"
+  done
+fi
+shift
+
+java -cp HotRodClient/target/CacheLoader-Client.jar:Domain/target/CacheLoader-Domain.jar$CLIENTLIB org.infinispan.wfink.playground.cacheloader.client.hotrod.PersonQueryHotRodClient $@

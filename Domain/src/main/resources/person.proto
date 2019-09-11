@@ -1,0 +1,7 @@
+package wfink.playground;
+
+message Person {
+  required int64 id = 1;
+  optional string name = 2;
+  optional int32 age = 3;
+}
