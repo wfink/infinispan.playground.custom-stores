@@ -84,6 +84,7 @@
   <modules>
     <module>Domain</module>
     <module>CacheLoader</module>
+    <module>AdvancedCacheLoader</module>
     <module>HotRodClient</module>
   </modules>
 </project>
